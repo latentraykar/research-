@@ -1,0 +1,530 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>How Piyush Pandey wrote ads: a reverse-engineered framework</title>
+<meta name="robots" content="noindex,nofollow">
+<meta property="og:title" content="How Piyush Pandey wrote ads: a reverse-engineered framework">
+<meta property="og:description" content="15 verified ads, per-ad breakdowns, patterns, framework, checklist, template and a proof run.">
+<meta name="twitter:card" content="summary">
+<style>
+:root{--ink:#1b1b1b;--mut:#666;--line:#ddd;--acc:#b3261e;--bg:#fffdf8}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.6 Georgia,"Times New Roman",serif}
+main{max-width:900px;margin:0 auto;padding:40px 20px 80px}
+h1{font-size:2rem;line-height:1.2;margin:0 0 8px}h2{font-size:1.45rem;margin:56px 0 12px;padding-top:12px;border-top:2px solid var(--ink)}
+h3{font-size:1.15rem;margin:34px 0 8px}h4{margin:18px 0 6px;font-size:1rem}
+p,li{max-width:74ch}.mut{color:var(--mut);font-size:.92rem}.tag{display:inline-block;font:600 .72rem/1 system-ui,sans-serif;padding:3px 6px;border-radius:3px;background:#eee;margin-right:4px;vertical-align:middle}
+.W{background:#1b5e20;color:#fff}.I{background:#0d47a1;color:#fff}.L{background:#8d6e63;color:#fff}.flag{color:var(--acc);font-weight:600}
+table{border-collapse:collapse;width:100%;font:14px/1.45 system-ui,sans-serif;margin:12px 0 20px}th,td{border:1px solid var(--line);padding:6px 8px;vertical-align:top;text-align:left}th{background:#f3efe6}
+.wrap{overflow-x:auto}details{border:1px solid var(--line);border-radius:4px;padding:6px 10px;margin:8px 0;background:#fff}summary{cursor:pointer;font:600 .9rem system-ui,sans-serif}
+.tr{font:14px/1.5 ui-monospace,Menlo,monospace;white-space:pre-wrap}.card{border:1px solid var(--line);background:#fff;padding:14px 18px;margin:16px 0;border-radius:4px}
+.card ol{padding-left:22px;margin:6px 0}.card li{margin:3px 0}blockquote{margin:10px 0;padding:6px 14px;border-left:3px solid var(--acc);background:#fff}
+a{color:#0b57d0}code{font-size:.9em}nav ol{columns:2;font-size:.95rem}
+</style></head><body><main>
+<p class="mut">Research brief from Kaustubh · compiled 23 Sep 2026</p>
+<h1>How Piyush Pandey wrote ads</h1>
+<p>A reverse-engineered framework built only from ads that were found and checked online. Every ad has a working link to the film and a separate link that proves Pandey's part in it.</p>
+
+<div class="card"><h4>How to read this</h4>
+<ul>
+<li><b>Pandey's role</b> is marked on every ad, because it changes how much the ad can teach:
+<span class="tag W">WROTE</span> he wrote the line, lyric or script ·
+<span class="tag I">IDEA</span> the central idea was his, and a team wrote or made it ·
+<span class="tag L">LED</span> his team's idea, made while he ran the department (he approved or shaped it).
+The patterns in Step 2 weigh WROTE and IDEA ads most.</li>
+<li><b>Transcripts:</b> I could not pull captions for these films, so every transcript is a <b>machine transcript taken from the video itself</b>. Where an article quotes a line, the two were checked against each other, and any mismatch is flagged in red. Treat regional-language words as PARTIAL.</li>
+<li><b>Nothing from memory.</b> Descriptions of visuals come from the films. Background on how each ad was made comes from the linked articles, most of them first-hand accounts by the people who made the ad. An inference is labelled <i>(inference)</i>.</li>
+</ul></div>
+
+<nav><ol>
+<li><a href="#corpus">Phase 1: the corpus</a></li><li><a href="#unverified">Unverified and excluded</a></li><li><a href="#conflicts">Conflicts found in the sources</a></li><li><a href="#s1">Step 1: ad-by-ad breakdown</a></li><li><a href="#s2">Step 2: hidden patterns</a></li><li><a href="#s3">Step 3: the framework</a></li><li><a href="#s4">Step 4: tools</a></li><li><a href="#s5">Step 5: proof run</a></li><li><a href="#sources">Sources</a></li>
+</ol></nav>
+
+<h2 id="corpus">Phase 1: the verified corpus (15 ads)</h2>
+<p class="mut">Spans the 1980s to 2019, 12 clients, TV, print, a public-service song and a PSA, both emotional and funny. Links were checked on 23 Sep 2026: YouTube links through YouTube's oEmbed lookup, articles returned HTTP 200.</p>
+<div class="wrap"><table>
+<tr><th>#</th><th>Ad</th><th>Year</th><th>Format · length</th><th>Film</th><th>Proof of Pandey's part</th><th>Role</th><th>Transcript</th></tr>
+<tr><td>1</td><td>Luna moped, "Chal Meri Luna"</td><td>1980s <span class="flag">(exact year unconfirmed)</span></td><td>TV, 0:43</td><td><a href="https://www.youtube.com/watch?v=odJC-JC8rLg">YouTube (archive upload)</a></td><td><a href="https://brandequity.economictimes.indiatimes.com/news/research/advertising/the-making-of-piyush-pandey/125270957">ETBrandEquity, Jagdeep Parsram</a>: his first copywriting job, he coined the line</td><td><span class="tag W">WROTE</span> line</td><td>FULL (machine)</td></tr>
+<tr><td>2</td><td>Doordarshan, "Mile Sur Mera Tumhara"</td><td>1988</td><td>National-integration film, 6:09 original</td><td><a href="https://www.youtube.com/watch?v=h_Vc4T2BdLU">Prasar Bharati Archives</a> (embedding disabled; listed on the official channel)</td><td><a href="https://en.wikipedia.org/wiki/Mile_Sur_Mera_Tumhara">Wikipedia</a> (lyricist) + <a href="https://brandequity.economictimes.indiatimes.com/news/research/advertising/the-making-of-piyush-pandey/125270957">ETBrandEquity</a> (wrote the lyrics with Pandit Vinod Sharma)</td><td><span class="tag W">WROTE</span> lyrics</td><td>PARTIAL (Hindi lines only; 14 languages)</td></tr>
+<tr><td>3</td><td>Cadbury Dairy Milk, "Kuch Khaas Hai" (cricket)</td><td>1993 or 1994 <span class="flag">(sources differ)</span></td><td>TV, 0:45</td><td><a href="https://www.youtube.com/watch?v=e7JATezA1nY">Cadbury Dairy Milk India (official)</a> · <a href="https://www.youtube.com/watch?v=ZwrS0UkGrPw">English version</a></td><td><a href="https://www.socialsamosa.com/2021/09/campaign-feature-iconic-cricket-ad-cadbury-team-ogilvy/">Social Samosa</a> (Pandey on the brief and casting) + <a href="https://brandequity.economictimes.indiatimes.com/news/research/advertising/the-making-of-piyush-pandey/125270957">ETBrandEquity</a> (he wrote the line and the lyric)</td><td><span class="tag W">WROTE</span> line, lyric</td><td>FULL (machine)</td></tr>
+<tr><td>4</td><td>Fevicol, "Egg"</td><td>1990s <span class="flag">(year not found)</span></td><td>TV, 0:32</td><td><a href="https://www.youtube.com/watch?v=lC5EhJl1wFE">Pidilite India (official)</a></td><td><a href="https://brandequity.economictimes.indiatimes.com/news/research/advertising/the-making-of-piyush-pandey/125270957">ETBrandEquity</a>: "this big idea Piyush had already cracked with the 'Egg' film"</td><td><span class="tag I">IDEA</span></td><td>FULL (machine)</td></tr>
+<tr><td>5</td><td>FeviKwik, "Fishing"</td><td>1998 or 1999 <span class="flag">(sources differ)</span></td><td>TV, 0:41</td><td><a href="https://www.youtube.com/watch?v=HMZ45fSOr1k">Pidilite India (official)</a></td><td><a href="https://www.storyboard18.com/advertising/fish-fevikwik-why-this-iconic-ad-is-still-stuck-in-our-heads-40521.htm">Storyboard18</a>, with Piyush and Prasoon Pandey: his idea, his tagline</td><td><span class="tag I">IDEA</span> + <span class="tag W">WROTE</span> tagline</td><td>PARTIAL (see conflicts)</td></tr>
+<tr><td>6</td><td>Fevicol, "Bus"</td><td>Year not found</td><td>TV, 0:42</td><td><a href="https://www.youtube.com/watch?v=lzB5Yt3AS_w">Fevicol Pidilite (official)</a></td><td><a href="https://brandequity.economictimes.indiatimes.com/news/research/advertising/the-making-of-piyush-pandey/125270957">ETBrandEquity</a>: a colleague's billboard idea that grew into a film, on the "Egg" platform Pandey had built</td><td><span class="tag L">LED</span> (his platform)</td><td>UNAVAILABLE (wordless folk vocal)</td></tr>
+<tr><td>7</td><td>Pulse Polio, "Do Boond Zindagi Ki" (angry Bachchan)</td><td>2002-03 (dates in the film fall on Sundays in 2003)</td><td>TV PSA, 0:45</td><td><a href="https://www.youtube.com/watch?v=QEqPQ6kmJUQ">YouTube (archive upload)</a> · later spot: <a href="https://www.youtube.com/watch?v=xHf6joKdCHk">UNICEF India (official)</a></td><td><a href="https://www.socialsamosa.com/2020/03/brand-saga-pulse-polio-campaign/">Social Samosa</a> (quotes his book "Pandeymonium") + <a href="https://brandequity.economictimes.indiatimes.com/news/research/advertising/the-making-of-piyush-pandey/125270957">ETBrandEquity</a> (Ajay Gahlaut: "the central idea came from Piyush")</td><td><span class="tag I">IDEA</span> (Gahlaut wrote the line)</td><td>FULL (machine)</td></tr>
+<tr><td>8</td><td>Cancer Patients Aid Association, "Cowboy" (second-hand smoke kills)</td><td>2002 (Cannes)</td><td>Print</td><td><a href="https://www.oneclub.org/awards/theoneshow/-award/867/cowboy/">The One Show archive entry</a></td><td><a href="https://www.storyboard18.com/brand-makers/former-ogilvys-ncd-rajiv-rao-recalls-his-first-iconic-ad-campaign-with-piyush-pandey-14993.htm">Storyboard18, Rajiv Rao</a>: "Piyush has this idea of showcasing a cowboy crying over a dead horse"</td><td><span class="tag I">IDEA</span></td><td>n/a (one line) · <span class="flag">I could not view the artwork</span></td></tr>
+<tr><td>9</td><td>Perfetti Center Shock, "Hila Ke Rakh De"</td><td>2002</td><td>TV, 0:43</td><td><a href="https://www.youtube.com/watch?v=8LrEsVPq7CU">Perfetti India (official)</a></td><td><a href="https://brandequity.economictimes.indiatimes.com/news/research/advertising/the-making-of-piyush-pandey/125270957">ETBrandEquity</a>: the baseline was his before any script existed; the barber script was a colleague's; Prasoon Pandey did the screenplay</td><td><span class="tag W">WROTE</span> baseline</td><td>FULL (machine)</td></tr>
+<tr><td>10</td><td>Asian Paints, "Har Ghar Kuch Kehta Hai"</td><td>2002 (re-aired 2024, unchanged)</td><td>TV, 0:48</td><td><a href="https://www.youtube.com/watch?v=g6qWfrcU9ek">Asian Paints (official)</a></td><td><a href="https://www.afaqs.com/news/advertising/asian-paints-ad-piyush-pandey-7094189">afaqs</a> + <a href="https://brandequity.economictimes.indiatimes.com/news/research/advertising/for-asian-paints-har-ghar-kuch-kehta-hai-is-not-a-time-capsule/113746431">ETBrandEquity</a>: he wrote it and voiced it</td><td><span class="tag W">WROTE</span> + voice</td><td>FULL (machine; line 1 corrected, see conflicts)</td></tr>
+<tr><td>11</td><td>Hutch, "You and I" (boy and pug)</td><td>2003</td><td>TV, ~1:00</td><td><a href="https://www.youtube.com/watch?v=r8ZC9uDg8Ik">Nirvana Films (production house)</a></td><td><a href="https://www.storyboard18.com/brand-marketing/bow-wow-how-cheeka-the-pug-made-hutch-a-household-name-42291.htm">Storyboard18</a>: idea by Rajiv Rao and Mahesh V; Pandey's note: "write a song"</td><td><span class="tag L">LED</span></td><td>FULL (English song)</td></tr>
+<tr><td>12</td><td>Pond's Cold Cream, "Googly Woogly Woosh"</td><td>~2009 (slate on the upload reads 03.08.09)</td><td>TV, 0:35</td><td><a href="https://www.youtube.com/watch?v=Ii8dR35JkaM">YouTube (archive upload)</a></td><td><a href="https://brandequity.economictimes.indiatimes.com/news/research/advertising/the-making-of-piyush-pandey/125270957">ETBrandEquity</a>: the phrase was his wife Nita's endearment and he proposed it</td><td><span class="tag I">IDEA</span></td><td>FULL (machine)</td></tr>
+<tr><td>13</td><td>Vodafone, ZooZoos (IPL)</td><td>2009</td><td>TV series, 0:25 spot</td><td><a href="https://www.youtube.com/watch?v=bSPPINGG0dM">Nirvana Films</a></td><td><a href="https://www.storyboard18.com/advertising/remember-the-times-when-zoozoos-were-all-the-rage-63977.htm">Storyboard18</a> + <a href="https://brandequity.economictimes.indiatimes.com/news/research/advertising/when-eggheads-turned-into-zoozoo-for-vodafone/93670908">ETBrandEquity</a>: Rajiv Rao's team; Pandey watched and approved</td><td><span class="tag L">LED</span></td><td>none (wordless)</td></tr>
+<tr><td>14</td><td>Gujarat Tourism, "Khushboo Gujarat Ki" (Kutch)</td><td>2010 onward</td><td>TV, 1:01</td><td><a href="https://www.youtube.com/watch?v=_PHfcd9AZ6s">YouTube (ourvibrantgujarat upload)</a></td><td><a href="https://brandequity.economictimes.indiatimes.com/news/research/advertising/the-making-of-piyush-pandey/125270957">ETBrandEquity</a>, Shoojit Sircar: Pandey and he made it together with Amitabh Bachchan</td><td><span class="tag I">IDEA</span>/co-created</td><td>FULL (machine)</td></tr>
+<tr><td>15</td><td>Fevicol, 60 years, "Sofa"</td><td>2019</td><td>TV, 1:43</td><td><a href="https://www.youtube.com/watch?v=moRXlROyIWA">YouTube (archive upload)</a></td><td><a href="https://mediabrief.com/fevicol-60-years-campaign-ogilvy/">Mediabrief</a>: "helmed by Piyush Pandey", script by Prasoon Pandey</td><td><span class="tag L">LED</span></td><td>FULL (machine, dialect)</td></tr>
+</table></div>
+
+<h3 id="unverified">Unverified and excluded</h3>
+<table>
+<tr><th>Ad</th><th>Why it is not in the analysis</th></tr>
+<tr><td>Google Search, "Reunion" (2013)</td><td>Ogilvy India made it, but <a href="https://en.wikipedia.org/wiki/Reunion_(advertisement)">Wikipedia</a> credits Sukesh Nayak as writer. The only source linking it to Pandey (an exchange4media column) is a tribute and blocks automated access. No proof of his personal role.</td></tr>
+<tr><td>MP Tourism, "Hindustan Ka Dil Dekho"</td><td>Only a <a href="https://marketingmind.in/not-just-a-tourism-ad-but-a-feeling-revisiting-madhya-pradeshs-hindustan-ka-dil-dekho/">generic article</a> credits "his leadership". Storyboard18's MP Tourism and Ogilvy history doesn't name him.</td></tr>
+<tr><td>Cadbury #GoodLuckGirls (2021 remake)</td><td>Made by the next generation of the team (Social Samosa). Pandey only approved it. Used only as a contrast.</td></tr>
+<tr><td>Fevicol "Dum Laga Ke Haisha" (1997, first Fevicol TV ad)</td><td>Social Samosa names it but gives no creative credit.</td></tr>
+<tr><td>Cadbury "Pappu Pass Ho Gaya"</td><td>Mentioned in a mentee's memory (Social Samosa). No source with credits found.</td></tr>
+<tr><td>Diamond ad, "Heere ko kya pata tumhari umar"</td><td>ETBrandEquity tells the story (the line came from his mother), but the brand isn't named and no film was found.</td></tr>
+<tr><td>Asian Paints "Har Khushi Mein Rang Laaye", "Mera Wala Blue"</td><td>Bharat Puri (<a href="https://www.cnbctv18.com/advertising/bharat-puri-pays-tribute-to-piyush-pandey-creative-genius-rooted-in-india-19755708.htm">CNBC-TV18</a>) credits the line to him. No original film was found, so the line is used as evidence and the ad is not analysed.</td></tr>
+<tr><td>BJP 2014, "Abki Baar Modi Sarkar"</td><td>Credited to him (Wikipedia, ETBrandEquity). Political; not analysed.</td></tr>
+</table>
+
+<h3 id="conflicts">Conflicts found in the sources</h3>
+<ul>
+<li><b>Cadbury year:</b> ETBrandEquity says 1993. ThePrint and YouTube uploads say 1994.</li>
+<li><b>FeviKwik year and details:</b> Marketing Mind says 1998; Storyboard18 says it was released in 1999. Storyboard18 says the villager counts four fish in Tamil ("onnu, renda, moonu, naalu") because his wife asked for four. The machine transcript heard "rende, moone, naale, anje" (two to five). Marketing Mind describes "one fish" and no dialogue, which the film contradicts. <span class="flag">Treat the counting line as unclear.</span></li>
+<li><b>"Do Boond Zindagi Ki":</b> Social Samosa dates the tagline to the 1994 launch. Ajay Gahlaut says he wrote the line, and that the angry-Bachchan idea was Pandey's. Both could be true (an older slogan, a new film), but it is unresolved.</li>
+<li><b>Asian Paints, line 1:</b> ETBrandEquity quotes the poem as "Har ghar chup chaap se <b>kuch</b> kehta hai". The machine transcript heard "…se <b>yeh</b> kehta hai". The quoted version is used here.</li>
+<li><b>Asian Paints voice:</b> ETBrandEquity (colleague) says Asian Paints chose his scratch recording. Storyboard18 quotes Pandey saying Amitabh Bachchan told him "Don't touch it, run it the way it is." Both agree the final voice is Pandey's.</li>
+<li><b>Hutch pug prices:</b> Rajiv Rao says ₹7,000 → ₹35,000+. Wikipedia says ₹10,000 → ₹60,000.</li>
+</ul>
+
+<h2 id="s1">Step 1: ad-by-ad breakdown</h2>
+<p class="mut">Numbering follows the brief: 1 brief · 2 core idea · 3 cultural insight · 4 hook · 5 structure · 6 emotional engine · 7 humour · 8 language · 9 music/sound · 10 product entry · 11 casting · 12 ending · 13 the "Pandey" choice. Timestamps refer to the linked upload.</p>
+
+<div class="card"><h3>1 · Luna, "Chal Meri Luna" <span class="tag W">WROTE</span></h3><ol>
+<li>Brief: competitors had arrived about 10 years after launch, so the brand needed "breakthrough, high-impact communication" (ETBrandEquity, Parsram).</li>
+<li>Idea: the moped is a trusty steed you call to; its name becomes the command.</li>
+<li>Insight: the line was "inspired by that childhood call, 'Chal Mere Ghode!'" (a horse rider's "giddy up"). A folk phrase repurposed.</li>
+<li>Hook: 0:00-0:05 a harried government clerk under a mountain of files.</li>
+<li>Structure: problem (works late, afraid to go home to an unhappy wife, 0:07-0:12) → idea (0:13) → Luna (0:15) → life fixed (on time, more time at home) → line.</li>
+<li>Emotion: relief and small-man pride ("shaan se bolo").</li>
+<li>Humour: gentle domestic comedy (the wife's stern look).</li>
+<li>Language: plain sung Hindi; the clerk speaks one line: "Chal meri Luna!"</li>
+<li>Music: a narrative jingle that tells the whole story in rhyming couplets.</li>
+<li>Product: enters as the solution at the midpoint (0:15).</li>
+<li>Casting: an ordinary "sarkari afsar", no stars.</li>
+<li>Ending: "Safalta ki sawaari, Luna."</li>
+<li>Pandey choice: a command a real person shouts at a real machine. The line was pitched by acting it out, "kicking the moped's pedal while calling out" (Parsram), with no storyboards.</li></ol>
+<details><summary>Transcript (machine, from the film)</summary><div class="tr">Singer: Yeh hain Mr. Ram Murari, afsar hain yeh ek sarkari. [This is Mr Ram Murari, a government officer.]
+Der der tak kaam yeh karte, phir ghar jaane se the darte. [He worked late, then dreaded going home.]
+Unko soojha ek upaay, agle din ek Luna laaye. [He hit on a fix; next day he brought a Luna.]
+Ram Murari: Chal meri Luna! [Go, my Luna!]
+Singer: Luna karti pakka vaada. Kharcha kam, mazbooti zyada. [Luna makes a firm promise: low cost, more strength.]
+Ab kaam bhi hain poora kar paate. Ghar mein zyada waqt bitaate. [Now he finishes work and spends more time at home.]
+Sukh paana hai tumko doona, shaan se bolo Chal Meri Luna. [Want double the happiness? Say it with pride: Chal Meri Luna.]
+VO: Safalta ki sawaari, Luna. [The ride of success.]</div><p class="mut">This upload carries a Vividh Bharati "on air" overlay. <span class="flag">It is unconfirmed whether this is the first Luna film or a later one in the series.</span></p></details></div>
+
+<div class="card"><h3>2 · Doordarshan, "Mile Sur Mera Tumhara" <span class="tag W">WROTE</span> lyrics</h3><ol>
+<li>Brief: a film on national unity for 15 Aug 1988 (Wikipedia). The concept was "unity in the diversity of India… a musical message" (ETBrandEquity).</li>
+<li>Idea: one tune passed across India's languages; when my tune meets yours, it becomes ours.</li>
+<li>Insight: unity felt as harmony, not preached as duty.</li>
+<li>Hook: a classical voice opens the song (Bhimsen Joshi composed it and sings the opening raag, per Wikipedia and ETBrandEquity).</li>
+<li>Structure: a relay. Each language and region takes a line, and the chorus returns.</li>
+<li>Emotion: pride and belonging.</li>
+<li>Humour: none.</li>
+<li>Language: simple Hindi metaphors (rivers of melody meeting the sea, taking the form of clouds), then 13 other languages.</li>
+<li>Music: the music <i>is</i> the ad.</li>
+<li>Product: the "product" is the idea of India; no brand.</li>
+<li>Casting: famous singers and artists appear, each as one voice in the relay (reported widely; I viewed only the Hindi opening).</li>
+<li>Ending: the returning chorus.</li>
+<li>Pandey choice: lyrics a child can sing. He was still a junior account executive and wrote them with Pandit Vinod Sharma over a week (ETBrandEquity).</li></ol>
+<details><summary>Transcript (Hindi opening only, machine)</summary><div class="tr">Mile sur mera tumhaara, toh sur bane hamaara. [When my tune meets yours, it becomes our tune.]
+Sur ki nadiyaan har disha se behke saagar mein mile. [Rivers of melody from every direction flow into the sea.]
+Baadalon ka roop lekar… [Taking the form of clouds…]</div><p class="mut">PARTIAL: the other language verses were not transcribed.</p></details></div>
+
+<div class="card"><h3>3 · Cadbury Dairy Milk, "Kuch Khaas Hai" (cricket) <span class="tag W">WROTE</span></h3><ol>
+<li>Brief (sourced): "get adults back into eating chocolates" (Pandey, Social Samosa). Chocolates were advertised only to children (ETBrandEquity).</li>
+<li>Idea: a grown woman lets the child inside her out, in public.</li>
+<li>Insight: "There's a child in all of us." It came from watching an elderly couple giggle over toys at an airport store (ETBrandEquity). A 1960s incident, a fan running onto the field to kiss cricketer Abbas Ali Baig, was reportedly an inspiration (Storyboard18 quiz, second-hand).</li>
+<li>Hook: 0:00-0:05 a woman in the stands bites chocolate; the batsman is on 99.</li>
+<li>Structure: tension (99, the ball in the air, 0:07-0:20) → release (six, 0:20) → transgression (she breaks past the guard onto the field, 0:24) → joy (her dance, 0:29) → product (0:35) → embrace (0:39).</li>
+<li>Emotion: freedom and joy. Pandey: "We wanted to surprise people and depict the freedom of expression without overtly trying to make a social statement."</li>
+<li>Humour: light (dodging the security guard).</li>
+<li>Language: almost no words beyond the jingle. The line was written in English first, then in Hindi (ETBrandEquity). An English version of the film exists (linked in the corpus).</li>
+<li>Music: the jingle carries everything. Composed by Louis Banks and sung by Shankar Mahadevan (Social Samosa).</li>
+<li>Product: after the emotional peak (0:35), as the milk-to-chocolate pour.</li>
+<li>Casting: a first-time actor. "We wanted fresh faces and someone who could just express that feeling of joy without being conscious" (Pandey). Her floral skirt was set against grey suits and a red carpet on purpose (the art director, ETBrandEquity).</li>
+<li>Ending: "Asli swaad zindagi ka."</li>
+<li>Pandey choice: a woman dancing on a cricket field, a break from convention shown as pure joy, never argued.</li></ol>
+<details><summary>Transcript (machine, Hindi version)</summary><div class="tr">Singer: Kuchh khaas hai, hum sabhi mein. [Something special, in all of us.]
+Kuchh baat hai, hum sabhi mein. [Something about all of us.]
+Baat hai, khaas hai. Kuchh swaad hai. Kya swaad hai zindagi mein. [It's special. There's a taste. What a taste to life.]
+VO: Cadbury's Dairy Milk. Asli swaad zindagi ka. [The real taste of life.]
+--- English version: "There's something so real in everyone… There's something so real in the taste of life." VO: "Cadbury's Dairy Milk. The real taste of life."</div></details></div>
+
+<div class="card"><h3>4 · Fevicol, "Egg" <span class="tag I">IDEA</span></h3><ol>
+<li>Brief <i>(inference)</i>: make "strongest bond" visible and memorable to a mass audience.</li>
+<li>Idea: a hen near a Fevicol tin lays eggs that will not break.</li>
+<li>Insight: glue's promise ("won't break") is abstract, so give it to something everyone knows breaks.</li>
+<li>Hook: 0:00-0:05 a carpenter planes wood, a nervous hen clucks, a cook boils eggs by a radio. Three clues whose meaning arrives later.</li>
+<li>Structure: normal task → escalating attempts (rim, ladle hits his own head, thrown at a clay pot which shatters) → reveal (hen pecking from the Fevicol tin, 0:27) → line.</li>
+<li>Emotion: amusement and disbelief.</li>
+<li>Humour: physical escalation and self-harm slapstick. The laugh lands on the bewildered face.</li>
+<li>Language: one idiomatic line, "Lagta hai yeh Fevicol ka kamaal hai. Tootega nahi."</li>
+<li>Music: a radio chant, "Zor lagaakar haisha!", which is also the name of Fevicol's first TV ad (Social Samosa).</li>
+<li>Product: the last 5 seconds, as the <i>explanation</i> of the mystery.</li>
+<li>Casting: an everyman cook in a vest.</li>
+<li>Ending: "Tootega nahi."</li>
+<li>Pandey choice: the product demo is also the joke. ETBrandEquity calls it the platform every later Fevicol film grew from.</li></ol>
+<details><summary>Transcript (machine)</summary><div class="tr">Radio announcer: Yeh gaana hai un sabhi shrotaon ke liye… [a request-show dedication, names partly unclear]
+Radio chant: Zor lagaakar haisha! (×3) Zor se maaro! Haisha! [Heave-ho! Hit it hard!]
+VO: Lagta hai yeh Fevicol ka kamaal hai. Tootega nahi. [Must be Fevicol's magic. It won't break.]</div></details></div>
+
+<div class="card"><h3>5 · FeviKwik, "Fishing" <span class="tag I">IDEA</span></h3><ol>
+<li>Brief: a commissioned FeviKwik film for Pidilite (Storyboard18). Selling "instant" is the challenge <i>(inference)</i>.</li>
+<li>Idea: a villager catches fish with a stick and a drop of FeviKwik while a city angler with full gear catches nothing.</li>
+<li>Insight: simple local cleverness beats expensive sophistication. Pandey's pitch: "Fevikwik ka kya hai? Somebody puts it on a stick, puts it inside the water, and catches fish."</li>
+<li>Hook: 0:00-0:07 a well-equipped angler at dawn; time passes, nothing bites.</li>
+<li>Structure: frustration → a noisy intruder (0:09) → the angler shushes him, then smirks → the drop and the count (0:19) → fish on the stick (0:28) → the villager dances off → the angler's jaw drops (0:34) → pack shot.</li>
+<li>Emotion: glee at the underdog.</li>
+<li>Humour: status reversal plus impossible demo. The laugh is on the loser's face.</li>
+<li>Language: the villager counts in a South Indian language (Storyboard18: Tamil; voiced by Chetan Shashital). No explanation is given.</li>
+<li>Music: nature sounds, then the villager's own nonsense song.</li>
+<li>Product: the tube is behind his ear, used on screen at 0:19; pack at the end.</li>
+<li>Casting: Kamal Chopra as the suave angler, Rajesh Khera as the villager (Storyboard18). Directed by Prasoon Pandey.</li>
+<li>Ending: "Chutki mein chipkaye, FeviKwik." The tagline was coined by Piyush (Storyboard18) and entered everyday speech.</li>
+<li>Pandey choice: he sold it to the chairman with a pencil, a coin, a glass of water and one drop, not a deck (Storyboard18).</li></ol>
+<details><summary>Transcript (machine, PARTIAL)</summary><div class="tr">Villager (singing, 0:09): [nonsense syllables, unclear]
+Villager (counting, 0:19): "rende, moone, naale, anje" [machine hearing; Storyboard18 gives "onnu, renda, moonu, naalu", Tamil 1-4]
+Villager (0:32): "Kedaichache!" [roughly "got it!", Tamil; machine hearing]
+VO: Chutki mein chipkaye, FeviKwik. [Sticks in a snap.]</div></details></div>
+
+<div class="card"><h3>6 · Fevicol, "Bus" <span class="tag L">LED</span></h3><ol>
+<li>Brief: none; it started as a billboard of people hanging off a Bombay local, then became print, then film (ETBrandEquity).</li>
+<li>Idea: an impossibly overloaded vehicle holds together because it says Fevicol.</li>
+<li>Insight: every Indian has seen this vehicle. The exaggeration is barely one.</li>
+<li>Hook: 0:00-0:05 one turbaned face; the camera pulls back to a crowd packed tight.</li>
+<li>Structure: the reveal widens (it's a truck in the desert, 0:15) → the ride, bodies swaying as one unit (0:32) → the tailgate sign (0:34).</li>
+<li>Emotion: amused recognition.</li>
+<li>Humour: visual exaggeration of the everyday, deadpan with no joke told.</li>
+<li>Language: none spoken.</li>
+<li>Music: rhythmic Rajasthani-style folk with wordless vocals; animal sounds for texture.</li>
+<li>Product: only as a painted sign on the back, the vehicle's "explanation".</li>
+<li>Casting: villagers, animals, remote Rajasthan chosen for texture (Prasoon Pandey, per ETBrandEquity).</li>
+<li>Ending: the sign drives away.</li>
+<li>Pandey choice (platform): Fevicol's presence alone makes things stick, the idea "Piyush had already cracked with the 'Egg' film".</li></ol></div>
+
+<div class="card"><h3>7 · Pulse Polio, angry Bachchan <span class="tag I">IDEA</span></h3><ol>
+<li>Brief: the 2002 outbreak and mass resistance in UP and Bihar; the ministry and UNICEF brought in Ogilvy (Social Samosa).</li>
+<li>Idea: the nation's most respected father figure scolds India like a dad upset with his child.</li>
+<li>Insight: in Indian families, a respected elder's anger moves people more than information. "Of course he can and should. He is going to do it like a dad who is upset with his child" (Pandey, via Social Samosa).</li>
+<li>Hook: 0:01 "Chheh!" then "Dhikkar hai hum par." Contempt in the first second.</li>
+<li>Structure: rebuke → rhetorical questions → the moral lever ("parents do so much for their children… you can't walk four steps?") → instruction (dates) → resolve → "Please. Come on."</li>
+<li>Emotion: shame turned into duty, then softened into encouragement.</li>
+<li>Humour: none.</li>
+<li>Language: conversational Hindi, a talking-to rather than a script.</li>
+<li>Music: none audible; the voice does the work.</li>
+<li>Product: the two drops, named in the argument.</li>
+<li>Casting: Amitabh Bachchan as the "angry young man" persona grown into a father (Social Samosa).</li>
+<li>Ending: "Please. Come on." The anger ends in a plea.</li>
+<li>Pandey choice: the celebrity plays a role only he can play. The client asked "How can Mr. Bachchan shout at people?"</li></ol>
+<details><summary>Transcript (machine; opening matches Social Samosa's quote)</summary><div class="tr">Bachchan: Chheh! Dhikkar hai hum par. Polio ke booth pe itne kam log? [Shame on us. So few people at the polio booth?]
+Kab tak apne ghar baithe intezaar karte rahenge aap? Kab tak apni zimmedariyon se munh modte rahenge? [How long will you wait at home and dodge your responsibilities?]
+Arre bhai, maa-baap toh bachchon ke liye kya-kya nahi karte. Do boondein jo aapke bachche ko zindagi de sakti hain, uske liye aap chaar kadam nahi chal sakte? [Parents do everything for their kids; for two drops that give life you can't walk four steps?]
+Paanch January aur nau February ko booth par jaayein aur bachche ko dawa pilayein. Chaliye. Thaan lein ki polio ka naamonishaan mita denge. Please. Come on.
+Female VO: Paanch saal tak ke bachchon ko 9 February ke din polio booth par zaroor laayein.</div></details></div>
+
+<div class="card"><h3>8 · CPAA, "Cowboy" <span class="tag I">IDEA</span></h3><ol>
+<li>Brief <i>(inference)</i>: make passive smoking feel lethal to smokers.</li>
+<li>Idea: a Marlboro-style cowboy weeps over his dead horse. Line: "Second-hand smoke kills."</li>
+<li>Insight: borrow tobacco's own hero and turn his world against him.</li>
+<li>Hook: a familiar icon in an unfamiliar state (described by Rao; <span class="flag">artwork not viewed</span>).</li>
+<li>Structure: one image, one line.</li>
+<li>Emotion: grief and guilt.</li>
+<li>Humour: none; dark irony.</li>
+<li>Language: English, four words.</li>
+<li>Music: n/a (print).</li>
+<li>Product: the cause, in the line.</li>
+<li>Casting: a borrowed icon.</li>
+<li>Ending: the line.</li>
+<li>Pandey choice: he pitched it in one sentence ("We see a dead horse, aur Marlboro man apna sar pakad kar roh raha hai") and chased it until it was made. It won India's first Cannes double Gold (Storyboard18, ETBrandEquity).</li></ol></div>
+
+<div class="card"><h3>9 · Center Shock, "Hila Ke Rakh De" <span class="tag W">WROTE</span> baseline</h3><ol>
+<li>Brief: "I have made this fantastic gum… now you eat it and make the ad!" (Perfetti's marketing head, ETBrandEquity).</li>
+<li>Idea: the gum is so sour it gives you a shock hairstyle.</li>
+<li>Insight: product truth (a sour jolt) made into a literal physical effect.</li>
+<li>Hook: 0:00 the pack ("IS HERE!!"), then a dim old barbershop.</li>
+<li>Structure: a customer shows a magazine hairstyle (0:15) → the barber reaches not for scissors but for gum (0:19) → a head-shake blur (0:28) → the hair matches the photo (0:36).</li>
+<li>Emotion: surprise and laughter.</li>
+<li>Humour: absurd literalisation plus a deadpan barber.</li>
+<li>Language: no dialogue; VO "Naya Center Shock. Hila ke rakh de."</li>
+<li>Music: retro instrumental, scat vocals during the shock.</li>
+<li>Product: the tool of the trick, mid-story.</li>
+<li>Casting: an old barber and a young customer.</li>
+<li>Ending: "Hila ke rakh de."</li>
+<li>Pandey choice: the line came before the story. "I don't know what the script is, but the baseline will be 'Hila Ke Rakh De!'"</li></ol></div>
+
+<div class="card"><h3>10 · Asian Paints, "Har Ghar Kuch Kehta Hai" <span class="tag W">WROTE</span> + voice</h3><ol>
+<li>Brief: the agency's insight that consumers take pride in their home, and paint is only an expression of it (Pandeymonium, via afaqs). The brand was entering "the home space" (Syngle, ETBrandEquity).</li>
+<li>Idea: every house quietly tells you who lives inside.</li>
+<li>Insight: homes are self-portraits.</li>
+<li>Hook: 0:00-0:05 a woman in an orange room; the words appear on a handprinted green board.</li>
+<li>Structure: a poem over a montage of homes, each line matched to a detail (ceiling, colours, bare feet on a floor), with black-and-white memory flashes. The opening couplet returns at the end.</li>
+<li>Emotion: warmth and recognition.</li>
+<li>Humour: none (one lovers' squabble memory).</li>
+<li>Language: poetic but plain Hindi, second-person-free, observational.</li>
+<li>Music: a soft score under a spoken poem; the voice is Pandey's own.</li>
+<li>Product: name only at 0:44; no paint tins.</li>
+<li>Casting: families across generations, no stars.</li>
+<li>Ending: "Asian Paints. Kyunki har ghar kuchh kehta hai."</li>
+<li>Pandey choice: he wrote it in one go and read it aloud to the clients, who teared up (afaqs), and his rough voice beat every professional's.</li></ol>
+<details><summary>Transcript (machine; line 1 per ETBrandEquity)</summary><div class="tr">VO: Har ghar chup chaap se kuch kehta hai, ki andar ismein kaun rehta hai. [Every house quietly says something about who lives inside.]
+Woman (memory, muffled): Kitna jhagda kiya tha tumne is hare rang ko leke… [How you fought over this green…]
+VO: Chhat bataati hai yeh kiska aasmaan hai. Rang kehte hain kiska yeh jahaan hai. [The ceiling says whose sky it is; the colours, whose world.]
+Kamron mein kiski kalpana jhalakti hai. Iss farsh par nange pair kiske bacche chalte hain. [Whose imagination shows in the rooms; whose children walk barefoot on this floor.]
+Kaun chun chun ke isse pyaar se sajata hai. Kaun iss makaan mein apna ghar basata hai. [Who decorates it with love; who makes a home in this house.]
+Har ghar chup chaap se… ki andar ismein kaun rehta hai. Asian Paints. Kyunki har ghar kuchh kehta hai.</div></details></div>
+
+<div class="card"><h3>11 · Hutch, "You and I" <span class="tag L">LED</span></h3><ol>
+<li>Brief: a new, expanding network needed to reassure people it works everywhere (Rao, Storyboard18).</li>
+<li>Idea: a pug follows a boy everywhere, like the network.</li>
+<li>Insight: loyalty is felt, not specified. "We did not want to talk about technology" (Mahesh V, Wikipedia).</li>
+<li>Hook: 0:00 bare feet land beside a pug under the bed, and it follows.</li>
+<li>Structure: a string of the boy's ordinary day, each with the pug arriving, ending on the tagline at 0:53.</li>
+<li>Emotion: tenderness.</li>
+<li>Humour: gentle (happy accidents like the pug slipping, per director Prakash Varma).</li>
+<li>Language: an English song; no dialogue.</li>
+<li>Music: Pandey's only note on the first cut: "I love the film. It is fantastic. But write a song." Mahesh V wrote "You and I, in this beautiful world."</li>
+<li>Product: tagline and logo only in the last 7 seconds; no phone is shown.</li>
+<li>Casting: a boy and a dog.</li>
+<li>Ending: "Wherever you go, our network follows."</li>
+<li>Pandey's fingerprint: the song, and backing an idea "that said nothing about telecom, yet… everything about telecom" (Storyboard18's paraphrase).</li></ol>
+<details><summary>Transcript (machine)</summary><div class="tr">Singer: You and I, in this beautiful world. Green grass, blue skies, in this beautiful world. You and I. Winding lanes as streams go by. You and I, in this beautiful world.
+Super: Wherever you go / our network follows.</div></details></div>
+
+<div class="card"><h3>12 · Pond's, "Googly Woogly Woosh" <span class="tag I">IDEA</span></h3><ol>
+<li>Brief <i>(inference)</i>: make "soft, moisturised skin" emotional and ownable.</li>
+<li>Idea: soft cheeks make you want to go "googly woogly woosh".</li>
+<li>Insight: real couples have silly private words; his wife Nita used this one (ETBrandEquity).</li>
+<li>Hook: 0:06 a sad schoolgirl in a school van; a boy glances at her.</li>
+<li>Structure: a love story over time (school → teens → wedding), with the nonsense phrase recurring as a pet name.</li>
+<li>Emotion: romance.</li>
+<li>Humour: sweet and silly (the phrase itself).</li>
+<li>Language: nonsense words plus English supers ("I love you, this much").</li>
+<li>Music: the jingle is the phrase.</li>
+<li>Product: 0:31, finger into cream.</li>
+<li>Casting: an unknown young couple across ages.</li>
+<li>Ending: "For soft, googly woogly woosh skin."</li>
+<li>Pandey choice: a line lifted from his own home. The client wasn't told where it came from until after it became a hit (ETBrandEquity).</li></ol>
+<details><summary>Transcript (machine; this upload is the English-supered cut)</summary><div class="tr">Singer: Googly woogly woosh. / Na na na… / Googly woogly woosh.
+Supers: I love you, this much. · I want our love to live forever. · I'll never leave you.
+VO: Pond's Moisturising Cold Cream. For soft, googly woogly woosh skin.</div></details></div>
+
+<div class="card"><h3>13 · Vodafone ZooZoos <span class="tag L">LED</span></h3><ol>
+<li>Brief: stand out in the clutter of IPL advertising; "something absolutely pathbreaking" (Harit Nagpal via Rao, ETBrandEquity).</li>
+<li>Idea: egg-headed creatures act out services, one film a day.</li>
+<li>Insight: in a clutter of loud ads, a silent, cute world gets noticed <i>(inference from the brief)</i>.</li>
+<li>Hook: tiny white creatures on a cricket pitch; a marching band arrives.</li>
+<li>Structure: a single gag in about 20 seconds.</li>
+<li>Emotion: delight.</li>
+<li>Humour: miniature visual comedy.</li>
+<li>Language: none.</li>
+<li>Music: a brass band, no lyrics.</li>
+<li>Product: logo at 0:21.</li>
+<li>Casting: actors in suits; props oversized to make them look tiny (Rao, Storyboard18).</li>
+<li>Ending: "Make the most of now."</li>
+<li>Pandey's part: he watched the films in Cape Town and "broke into peals of laughter". Approval, not authorship.</li></ol></div>
+
+<div class="card"><h3>14 · Gujarat Tourism, "Khushboo Gujarat Ki" (Kutch) <span class="tag I">IDEA</span>/co-created</h3><ol>
+<li>Brief <i>(inference)</i>: make a state a destination.</li>
+<li>Idea: the country's most trusted voice walks you through Gujarat like a host.</li>
+<li>Insight: in India, a place is sold by the people and their spirit, not the views alone.</li>
+<li>Hook: 0:00-0:05 feet on the cracked white Rann; a lone figure in white turns.</li>
+<li>Structure: an arresting landscape → poetic lines → the people ("don't take nature's hardships to heart") → sea → the brand line → a playful ending.</li>
+<li>Emotion: wonder and pride.</li>
+<li>Humour: a light ending ("Ae Kaka! Ubaro…").</li>
+<li>Language: literary Hindi plus a Gujarati touch at the end.</li>
+<li>Music: cinematic instrumental, no song.</li>
+<li>Product: "Kuch din toh guzaro Gujarat mein."</li>
+<li>Casting: Amitabh Bachchan (ETBrandEquity, Shoojit Sircar) as narrator-host inside the place.</li>
+<li>Ending: "Kutch nahi dekha toh kuch nahi dekha" (a pun: if you haven't seen Kutch, you've seen nothing).</li>
+<li>Pandey choice: a wordplay line that sticks, and a star used as a storyteller.</li></ol>
+<details><summary>Transcript (machine)</summary><div class="tr">Bachchan: Kutch ka yeh Rann, Hindustan ka toran hai. [This Rann of Kutch is India's gateway.]
+Chandni raat ki yeh safed dharti, yun lagta hai jaise chaand zameen par utar aaya hai. [On moonlit nights the white earth looks like the moon came down.]
+Prakriti ki kathinaiyon ko dil pe nahi lete Kutch ke log. Jeevan ko sajaate hain rangon se, kala se, sangeet ke suron se. [Kutch's people don't take nature's hardships to heart; they decorate life with colour, art, music.]
+Mandvi ka neela samandar bhi yahin hai… Yahan khushboo hai utsaah ki, utsav ki, rangon ki, kalakaari ki. Khushboo hai Gujarat ki.
+Aapne Kutch nahi dekha toh kuch nahi dekha. Kuch din toh guzaro Gujarat mein. Ae Kaka! Ubaro, ubaro…</div></details></div>
+
+<div class="card"><h3>15 · Fevicol 60 years, "Sofa" <span class="tag L">LED</span></h3><ol>
+<li>Brief: mark 60 years of the brand (Mediabrief, Social Samosa).</li>
+<li>Idea: one sofa passes through generations and families; it lasts because Fevicol is inside.</li>
+<li>Insight: Indian furniture outlives owners, getting re-covered rather than replaced.</li>
+<li>Hook: a newly married bride arrives with a two-seater sofa.</li>
+<li>Structure: a cumulative folk song. Each verse names a new owner (Sharmain → Misrain → Collectorain…), a new cover, a new India.</li>
+<li>Emotion: nostalgia and pride, with a smile.</li>
+<li>Humour: the naming chain and the social changes (love marriage, going abroad).</li>
+<li>Language: a Bhojpuri/Bihari-inflected dialect ("byah", "banelu"). Social Samosa calls it the Bihari dialect.</li>
+<li>Music: the song is the narrative.</li>
+<li>Product: the Fevicol tin at 1:31, in the making of the sofa.</li>
+<li>Casting: many ordinary families.</li>
+<li>Ending: "Par sofa banaaye toh dil se banaaye" → "Barson se, barson tak."</li>
+<li>Pandey's fingerprint: "Fevicol is not just an adhesive, but a cultural glue that salutes the people of India" (Mediabrief). Prasoon Pandey wrote the script.</li></ol>
+<details><summary>Transcript (machine, dialect, PARTIAL)</summary><div class="tr">Sarma ki dulhin jo byah ke aayi, sang two-seater sofa le aayi. Pad gayo naam Sarmaain ka sofa… [Sharma's bride brought a two-seater; it became "Mrs Sharma's sofa"]
+Sarmaain behin ka byah karain, sofa pe nava kapda chadhain. Ban gayo woh Misraain ka sofa… [re-covered for her sister's wedding → "Mrs Mishra's sofa"]
+Misraain ka larka collector banelu, sofa pe rexine-chamda chadhelu… [her son became a Collector → rexine cover → "Mrs Collector's sofa"]
+Collector ki bitya love marriage kareli… [the Collector's daughter's love marriage …]
+Dekhi Ganga paar ki shaadi, dekhi desh ke baahar ki shaadi… [it saw weddings across the Ganga and abroad]
+Ab koi byah karaaye ya na karaaye, par sofa banaaye toh dil se banaaye. · Super: Barson se, barson tak.</div></details></div>
+
+<h2 id="s2">Step 2: the hidden patterns</h2>
+<h3>What repeats across most of the corpus</h3>
+<ol>
+<li><b>The product's promise becomes an impossible, visible event, and the event is the joke.</b> An egg survives a clay pot (Egg, 0:20). Fish stick to a bare stick (FeviKwik, 0:28). A truck carries a village (Bus, 0:32). A head shakes into a hairstyle (Center Shock, 0:28). No claim is spoken in any of them. Marketing Mind: "the joke and the product demo are the same beat."</li>
+<li><b>The insight comes from something he saw or heard in life, often his own.</b> An elderly couple playing with toys at an airport became Cadbury's "child in all of us". His wife's pet phrase became Pond's. A childhood "Chal mere ghode!" became Luna. A colleague's Bombay-local billboard became the Bus. Colleagues: "observing little things around him and turning them into advertising gold" (ETBrandEquity).</li>
+<li><b>The line often exists before the script, and it is written to be said aloud.</b> "Hila ke rakh de" came with no script. "Chal meri Luna" was shouted in a car before the meeting. The Asian Paints poem was recited in one go and never edited (afaqs). "Chutki mein chipkaye" and "Fevicol ka kamaal" entered everyday speech. Test for his lines: can someone repeat them to a friend the next day?</li>
+<li><b>He sells ideas by performing them.</b> For FeviKwik he stuck a coin to a pencil in a glass of water. For Luna he acted out the ad for the client. For Asian Paints he read the poem aloud and made "a scratch film" so the client could "mehsoos it with their hearts". For Cowboy he pitched one sentence. The idea has to work when it is told, before anything is filmed.</li>
+<li><b>The brand arrives last, as the answer to what you just saw.</b> Egg reveals the Fevicol tin at 0:27 of 0:32. Bus shows the tailgate sign at 0:34. Hutch's tagline comes at 0:53. Cadbury's product appears after the dance, at 0:35. Asian Paints names itself at 0:44. The one exception is Center Shock, where the pack is the magic tool and appears early.</li>
+<li><b>Ordinary people, one "status" contrast.</b> A villager beats a suave angler (FeviKwik). A harried clerk (Luna). A girl breaks past the suits and the security guard (Cadbury). An old barber (Center Shock). Stars are rare, and first-timers are chosen on purpose: "fresh faces" (Pandey on Cadbury).</li>
+<li><b>Few or no words on screen.</b> FeviKwik, Egg, Bus, Hutch, ZooZoo and Center Shock tell the story visually, with one spoken line or a sung line at most. The language burden sits on the tagline.</li>
+<li><b>When the idea is emotional, a song or a voice carries it.</b> Cadbury, Mile Sur, Luna, Pond's and Sofa put the story in the song. Asian Paints puts it in a spoken poem. His one note on the Hutch cut was "write a song."</li>
+<li><b>Time and inheritance as structure.</b> Sofa follows one object across generations. Asian Paints moves through memory flashes and three generations of women. Pond's follows a love story from school to wedding.</li>
+</ol>
+
+<h3>The seven common assumptions, tested</h3>
+<table>
+<tr><th>Assumption</th><th>Verdict</th><th>Evidence</th></tr>
+<tr><td>(a) Deep Indian cultural insight over cleverness</td><td><b>Refine</b></td><td>His insights are universal human truths dressed in Indian detail: the child in all of us (Cadbury), homes as self-portraits (Asian Paints), a father's shame (Polio). Cleverness is not avoided. FeviKwik and Center Shock are gag films. The cleverness always serves one product truth.</td></tr>
+<tr><td>(b) Hindi/Hinglish heartland voice</td><td><b>Refine, mostly reject "Hinglish"</b></td><td>The corpus has almost no Hinglish mixing. It uses pure Hindi (Luna, Asian Paints, Polio), dialect (Sofa), Tamil counting (FeviKwik), English (Hutch; Cadbury was written in English first) or no words (ZooZoo, Bus). The rule is <i>the character's real language</i>, not a house Hinglish.</td></tr>
+<tr><td>(c) Emotion and nostalgia as the engine</td><td><b>Refine</b></td><td>Emotion yes: joy (Cadbury), warmth (Asian Paints), shame (Polio). But roughly half the corpus is comedy (Egg, FeviKwik, Bus, Center Shock, ZooZoo). Nostalgia is mostly something the ads <i>became</i> (the 2021 and 2024 re-runs), not a tool they used, except Sofa. His own words: "We don't want something that goes viral for two days" (afaqs).</td></tr>
+<tr><td>(d) Humour rooted in everyday observation</td><td><b>Confirm</b></td><td>It takes a real situation and pushes it one step: the overloaded vehicle, the angler, a stubborn egg. It is deadpan, and no one tells a joke. The laugh sits on a reaction face: the angler's dropped jaw, the cook's bewilderment, the barber's calm.</td></tr>
+<tr><td>(e) Strong jingles and music</td><td><b>Confirm for emotional work only</b></td><td>The song carries the idea in Cadbury, Mile Sur, Luna, Pond's, Sofa and Hutch. The gag films use music as rhythm, with no lyric to remember (Bus, Center Shock, FeviKwik). The angry Polio spot has no music.</td></tr>
+<tr><td>(f) Simple visual metaphors</td><td><b>Confirm</b></td><td>A pug following = the network (Hutch). An unbreakable egg = the bond (Egg). A dancing girl = the inner child (Cadbury). A dead horse = second-hand smoke (Cowboy). Each is one image you can describe in a sentence.</td></tr>
+<tr><td>(g) Celebrities as storytellers, not ornaments</td><td><b>Confirm, on thin evidence</b></td><td>Only two WROTE/IDEA ads use a star. Both put Bachchan <i>inside</i> a role: the angry father (Polio) and the host of the place (Gujarat). The default is no celebrity.</td></tr>
+</table>
+
+<h3>What people don't usually mention</h3>
+<ul>
+<li><b>The underdog wins.</b> In most funny ads the simple, local, low-status person beats the sophisticated one: the villager beats the angler, the clerk beats the file pile, the girl beats the guard.</li>
+<li><b>The reaction shot is the punchline.</b> Watch the loser's or the observer's face: the angler at 0:34, the cook at 0:24, the barber at 0:36, the batsman smiling at 0:28.</li>
+<li><b>He hands the craft to specialists and protects one core.</b> Rao and Mahesh V (Hutch, ZooZoo), Prasoon Pandey (FeviKwik, Bus, Sofa) and Gahlaut (Polio line) did the making. Sircar: "He would listen to, and manoeuvre ideas as long as the core remained intact" (ETBrandEquity).</li>
+<li><b>Imperfect beats polished.</b> His smoker's voice beat trained voice artists on Asian Paints. Hutch kept its happy accidents. His advice on the 2021 Cadbury remake: don't let the actor rehearse too much "so that he doesn't lose the spontaneity" (Social Samosa).</li>
+<li><b>He makes the long film first.</b> "People who are talking about seven seconds were launched in this country by using a two-and-a-half-minute film" (afaqs).</li>
+</ul>
+
+<h3>In his own words</h3>
+<blockquote>"What we were trying to do is get adults back into eating chocolates." · "We wanted to surprise people and depict the freedom of expression without overtly trying to make a social statement." · "We make our creative work not based on the platform but based on people." · "We have not underlined the inclusivity. It is inherent in the idea." (<a href="https://www.socialsamosa.com/2021/09/campaign-feature-iconic-cricket-ad-cadbury-team-ogilvy/">Social Samosa, 2021</a>)</blockquote>
+<blockquote>"Fevikwik ka kya hai? Somebody puts it on a stick, puts it inside the water, and catches fish." (<a href="https://www.storyboard18.com/advertising/fish-fevikwik-why-this-iconic-ad-is-still-stuck-in-our-heads-40521.htm">Storyboard18</a>)</blockquote>
+<blockquote>"I love the film. It is fantastic. But write a song." (<a href="https://www.storyboard18.com/brand-marketing/bow-wow-how-cheeka-the-pug-made-hutch-a-household-name-42291.htm">Storyboard18</a>)</blockquote>
+<blockquote>"Of course he can and should. He is going to do it like a dad who is upset with his child." (Pandeymonium, quoted in <a href="https://www.socialsamosa.com/2020/03/brand-saga-pulse-polio-campaign/">Social Samosa</a>) · On Polio: "That was when I first realized I was in the right business." (The Drum, via the same article)</blockquote>
+<blockquote>"We don't want something that goes viral for two days and doesn't leave an impact on you… we've got a classic." (<a href="https://www.afaqs.com/news/advertising/asian-paints-ad-piyush-pandey-7094189">afaqs, 2024</a>) · "It's much bigger an idea than people thought. At the time of writing, I also didn't realise how big it was." (<a href="https://www.storyboard18.com/advertising/asian-paints-brings-back-2002-classic-ad-the-emotional-power-behind-har-ghar-kuch-kehta-hai-43807.htm">Storyboard18</a>)</blockquote>
+<blockquote>"To me, Fevicol is not just an adhesive, but a cultural glue that salutes the people of India." (<a href="https://mediabrief.com/fevicol-60-years-campaign-ogilvy/">Mediabrief, 2019</a>)</blockquote>
+<blockquote>"Tu dara mat kar. Creative logon ko darna nahin chahiye… Front foot par khel." [Don't be afraid. Creative people shouldn't fear. Play on the front foot.] (to mentee Talha Bin Mohsin, <a href="https://www.socialsamosa.com/experts-speak/piyush-pandey-mentees-share-lessons-fearlessness-storytelling-6951807">Social Samosa</a>)</blockquote>
+<p class="mut">Second-hand, from people who worked with him: "Keep it simple. Don't overthink, don't overanalyse… arrive at a simple nugget you can build the whole campaign on" (a colleague, Social Samosa). "He could take an ordinary situation, add humour, and make the viewer say, 'This happens to me'" (Bharat Puri, <a href="https://www.cnbctv18.com/advertising/bharat-puri-pays-tribute-to-piyush-pandey-creative-genius-rooted-in-india-19755708.htm">CNBC-TV18</a>).</p>
+
+<h2 id="s3">Step 3: the framework, "write an ad like Piyush Pandey"</h2>
+<div class="card"><ol>
+<li><b>Starting move: find the insight in life, not in the brief.</b> He looked at people (the airport couple), his own home (his wife's phrase, his mother's diamond) and the street (the Bombay local). <br><i>Apply:</i> before writing, list five moments you have personally seen that involve the product's promise. Pick the one you would retell at dinner.</li>
+<li><b>Idea test: it works when told in one sentence, or acted out with props on a table.</b> "Somebody puts it on a stick… and catches fish." <br><i>Apply:</i> say the idea aloud in one breath. If it needs a deck or a second sentence, it isn't ready.</li>
+<li><b>Structure: normal world → escalation → an impossible or emotional peak → the brand as the explanation → a line.</b> Comedy builds to a reaction face; emotion builds to a release (a dance, a hug). <br><i>Apply:</i> put the product's first clear appearance in the last quarter, unless the product is the magic tool.</li>
+<li><b>Language: the character's real tongue, and a line you can repeat.</b> Short, idiomatic, rhythmic lines ("Chutki mein chipkaye", "Hila ke rakh de", "Tootega nahi"), often before the script exists. Dialect when it adds truth (Sofa); nonsense when it's true to life (Pond's). <br><i>Apply:</i> write the tagline first, in the language your character would actually speak, then test whether a child would repeat it.</li>
+<li><b>Music and casting: a song for feeling, silence and rhythm for gags. Unknown faces by default; a star only inside a role their persona earns.</b> <br><i>Apply:</i> emotional film → write lyrics that tell the story. Comic film → no lyric, just rhythm. Casting brief: "someone who can express the feeling without being conscious."</li>
+<li><b>Product: the demo is the story.</b> The product causes the impossible moment (Egg, FeviKwik, Bus, Center Shock) or is the name of the feeling (Cadbury, Asian Paints). Never list benefits. <br><i>Apply:</i> finish the sentence "Because of the product, ___ happens that could never happen otherwise." Film that.</li>
+<li><b>Filter: cut what explains, preaches or polishes.</b> No "social statement" underlined (Cadbury, 2021). No technology talk (Hutch). No preachy government advertorials (Polio). Keep the rough voice and the happy accident. <br><i>Apply:</i> delete every line that tells the viewer what to feel, or what the product is made of.</li>
+</ol></div>
+
+<h2 id="s4">Step 4: the tools</h2>
+<h3>Pre-flight checklist (yes/no)</h3>
+<div class="card"><ol>
+<li>Can the idea be told in one sentence, or acted out with objects on a table?</li>
+<li>Did the insight come from something a real person did or said, not from category research?</li>
+<li>Would a viewer say "this happens to me" or "that's so true"?</li>
+<li>Is there one simple image someone could describe to a friend afterwards?</li>
+<li>Does the product <i>cause</i> the key moment, rather than being described?</li>
+<li>Does the brand's clear arrival come late, as the answer, not as an interruption?</li>
+<li>Is there a reaction face where the laugh or feeling lands?</li>
+<li>Is the tagline under about six words, rhythmic, and in the character's own language?</li>
+<li>Would people repeat the line in daily life (in a different context)?</li>
+<li>If it's emotional, does a song or voice carry the story? If it's comic, does it work with no dialogue?</li>
+<li>Are the people ordinary and fresh, and does any star play a role their persona earns?</li>
+<li>Is there an underdog, a status reversal or a small act of breaking a rule?</li>
+<li>Have you cut every line that explains the feeling or lists features?</li>
+<li>Would the ad still hold up in 20 years (no trend or meme dependency)?</li>
+</ol></div>
+
+<h3>Fill-in-the-blanks template</h3>
+<div class="card tr">PRODUCT PROMISE (one word): ________  (e.g. "won't break", "instant", "real taste")
+REAL MOMENT I SAW: ________ (who, where, what they did or said)
+TRUTH UNDER IT: "Everyone ________."
+THE IMPOSSIBLE / EMOTIONAL PEAK: Because of [product], [ordinary person] ________, which could never normally happen.
+WORLD: [a place with texture: village road, office, kitchen, stadium], [ordinary person] + [a status opposite: suave / strict / official].
+BEATS (30-45s):
+  0-5s   normal world, one striking detail: ________
+  5-20s  escalation, attempts or tension: ________
+  20-30s the peak, shown not said: ________
+  30-35s reaction face: ________
+  last 5s brand as the explanation + LINE
+LINE (≤6 words, the character's language, sayable): "________"
+SOUND: [song that tells the story] OR [rhythm/folk instrumental, no lyric] OR [one voice, no music]
+CASTING NOTE: unknown face who can "express the feeling without being conscious" / star ONLY if persona = role: ________</div>
+
+<h3>The 5 most common mistakes when imitating him</h3>
+<ol>
+<li><b>Writing "desi" Hinglish slang as a style.</b> He used the character's real language, whether pure Hindi, dialect, Tamil or English, and rarely mixed. <i>Instead:</i> choose a character first, then speak as they would.</li>
+<li><b>Using Indianness as props</b> (diyas, weddings, chai montages) without an observed truth. <i>Instead:</i> one specific moment someone actually lived (a clerk scared to go home late; a sofa re-covered for a sister's wedding).</li>
+<li><b>Explaining the product.</b> Voice-over adjectives and bond-strength claims. <i>Instead:</i> an impossible event only the product could cause, then silence.</li>
+<li><b>Using a celebrity as a face.</b> <i>Instead:</i> no star, or a star inside their public persona doing something only they could get away with (Bachchan scolding a nation).</li>
+<li><b>Forcing a jingle onto a gag, or a gag onto a feeling.</b> <i>Instead:</i> songs for emotional ideas (Cadbury, Sofa), wordless rhythm for comic demos (Bus, FeviKwik).</li>
+</ol>
+
+<h2 id="s5">Step 5: proof run</h2>
+<p class="flag">EXAMPLE BRIEF (invented for this exercise; no real client)</p>
+<div class="card"><p><b>Brand:</b> "Kasa", a steel tiffin with a leak-proof lid. <b>Audience:</b> families in Tier 2/3 India. <b>Goal:</b> make "leak-proof" memorable and ownable. <b>Format:</b> 45s TV/YouTube.</p>
+<p><b>Insight:</b> Mothers and grandmothers send home food across India: pickles, ghee, dal to hostels and first jobs. The food arrives; what the recipient fears is the oil stain on everything else. The love arrives, and so does the mess.</p>
+<p><b>Idea (one sentence):</b> Nani's mango pickle travels from Jaipur to a Bengaluru hostel through a dozen careless hands, and not one drop of oil gets out.</p>
+<h4>Script: "Nani Ka Achaar"</h4>
+<div class="tr">0-5s   Jaipur kitchen. Nani presses the lid down with her whole palm. Thump.
+        (folk song starts, Rajasthani-style, one male voice, cumulative verses like Fevicol "Sofa")
+SONG:   Nani ne bheja achaar, Jaipur se Bangalore…   [Nani sent pickle, Jaipur to Bangalore]
+5-12s  Tiffin handed to a bus conductor, who tosses it onto the roof rack. It bounces.
+SONG:   Conductor ne phenka chhat pe…               [the conductor flung it on the roof]
+12-20s Train: a porter uses it as a pillow; a child spins it like a top.
+SONG:   Coolie ne rakha sirhaane, bachche ne ghumaya… [the porter slept on it, a kid spun it]
+20-28s Courier van: it slides across the floor with parcels at every speed-breaker.
+28-34s Hostel. The grandson opens it at his desk. Roommates lean in, bracing. Close on the paper and the clean white shirt beside it: not a drop.
+34-38s REACTION: the roommate sniffs the air, eyes closed. The grandson grins. (no dialogue)
+38-45s Pack shot: Kasa tiffin, lid pressed with a palm (callback to Nani).
+VO/SUPER: "Kasa. Swaad pahunche, tel nahi."           [The taste arrives. The oil doesn't.]</div>
+<h4>Principles used</h4>
+<ul>
+<li><b>Insight from life (1):</b> the oil-stained parcel from home is a shared Indian experience.</li>
+<li><b>One-sentence idea (2):</b> told in one breath; it could be acted out with a tin and a shake on a table.</li>
+<li><b>Structure (3):</b> normal world → escalating mishandling → the peak (clean paper) → reaction face → brand as explanation.</li>
+<li><b>Product as the story (6):</b> the lid causes the payoff, and no claim is spoken.</li>
+<li><b>Language and line (4):</b> short, rhythmic, repeatable; "Swaad pahunche, tel nahi" can travel into daily use ("gossip pahunche, tel nahi").</li>
+<li><b>Music and casting (5):</b> a cumulative folk song carries the journey; unknown faces; no star.</li>
+<li><b>Filter (7):</b> no "leak-proof technology" or silicone-seal VO. Nani's thump is the only "demo".</li>
+</ul></div>
+
+<h2 id="sources">Sources</h2>
+<p class="mut">Checked 23 Sep 2026. Articles returned HTTP 200 unless marked. Films were checked through YouTube's oEmbed lookup.</p>
+<h4>Films</h4>
+<ul>
+<li>Luna: <a href="https://www.youtube.com/watch?v=odJC-JC8rLg">youtube.com/watch?v=odJC-JC8rLg</a></li>
+<li>Mile Sur Mera Tumhara (Prasar Bharati Archives): <a href="https://www.youtube.com/watch?v=h_Vc4T2BdLU">youtube.com/watch?v=h_Vc4T2BdLU</a></li>
+<li>Cadbury cricket, Hindi (official): <a href="https://www.youtube.com/watch?v=e7JATezA1nY">e7JATezA1nY</a> · English version: <a href="https://www.youtube.com/watch?v=ZwrS0UkGrPw">ZwrS0UkGrPw</a> · 2021 remake (official): <a href="https://www.youtube.com/watch?v=z_OtC06ndUE">z_OtC06ndUE</a></li>
+<li>Fevicol Egg (official): <a href="https://www.youtube.com/watch?v=lC5EhJl1wFE">lC5EhJl1wFE</a></li>
+<li>FeviKwik Fishing (official): <a href="https://www.youtube.com/watch?v=HMZ45fSOr1k">HMZ45fSOr1k</a></li>
+<li>Fevicol Bus (official): <a href="https://www.youtube.com/watch?v=lzB5Yt3AS_w">lzB5Yt3AS_w</a></li>
+<li>Pulse Polio, angry Bachchan: <a href="https://www.youtube.com/watch?v=QEqPQ6kmJUQ">QEqPQ6kmJUQ</a> · UNICEF India later spot: <a href="https://www.youtube.com/watch?v=xHf6joKdCHk">xHf6joKdCHk</a></li>
+<li>CPAA Cowboy (One Show): <a href="https://www.oneclub.org/awards/theoneshow/-award/867/cowboy/">oneclub.org/…/867/cowboy</a></li>
+<li>Center Shock (official): <a href="https://www.youtube.com/watch?v=8LrEsVPq7CU">8LrEsVPq7CU</a></li>
+<li>Asian Paints (official): <a href="https://www.youtube.com/watch?v=g6qWfrcU9ek">g6qWfrcU9ek</a></li>
+<li>Hutch (Nirvana Films): <a href="https://www.youtube.com/watch?v=r8ZC9uDg8Ik">r8ZC9uDg8Ik</a></li>
+<li>Pond's: <a href="https://www.youtube.com/watch?v=Ii8dR35JkaM">Ii8dR35JkaM</a></li>
+<li>ZooZoo (Nirvana Films): <a href="https://www.youtube.com/watch?v=bSPPINGG0dM">bSPPINGG0dM</a></li>
+<li>Gujarat Tourism, Kutch: <a href="https://www.youtube.com/watch?v=_PHfcd9AZ6s">_PHfcd9AZ6s</a></li>
+<li>Fevicol Sofa: <a href="https://www.youtube.com/watch?v=moRXlROyIWA">moRXlROyIWA</a></li>
+</ul>
+<h4>Articles and records</h4>
+<ul>
+<li><a href="https://brandequity.economictimes.indiatimes.com/news/research/advertising/the-making-of-piyush-pandey/125270957">ETBrandEquity, "The Making of Piyush Pandey" (Nov 2025)</a>: colleagues' first-hand accounts (Luna, Mile Sur, Cadbury, Bus, Center Shock, Asian Paints, Polio, Cowboy, Hutch, Pond's, Gujarat)</li>
+<li><a href="https://www.socialsamosa.com/2021/09/campaign-feature-iconic-cricket-ad-cadbury-team-ogilvy/">Social Samosa, Cadbury then and now (2021)</a></li>
+<li><a href="https://www.storyboard18.com/quantum-brief/whats-kuch-khaas-about-the-iconic-cadbury-dairy-milk-ad-12619.htm">Storyboard18, Cadbury trivia</a></li>
+<li><a href="https://www.socialsamosa.com/2021/04/brand-saga-fevicol-advertising-journey/">Social Samosa, Fevicol brand saga</a></li>
+<li><a href="https://mediabrief.com/fevicol-60-years-campaign-ogilvy/">Mediabrief, Fevicol 60 years</a></li>
+<li><a href="https://www.storyboard18.com/advertising/fish-fevikwik-why-this-iconic-ad-is-still-stuck-in-our-heads-40521.htm">Storyboard18, FeviKwik Fishing</a> · <a href="https://marketingmind.in/chutki-mein-chipkaye-the-ad-that-glued-itself-to-memory/">Marketing Mind, FeviKwik</a></li>
+<li><a href="https://www.afaqs.com/news/advertising/asian-paints-ad-piyush-pandey-7094189">afaqs, Asian Paints revival (2024)</a> · <a href="https://brandequity.economictimes.indiatimes.com/news/research/advertising/for-asian-paints-har-ghar-kuch-kehta-hai-is-not-a-time-capsule/113746431">ETBrandEquity, Asian Paints</a> · <a href="https://www.storyboard18.com/advertising/asian-paints-brings-back-2002-classic-ad-the-emotional-power-behind-har-ghar-kuch-kehta-hai-43807.htm">Storyboard18, Asian Paints</a></li>
+<li><a href="https://www.socialsamosa.com/2020/03/brand-saga-pulse-polio-campaign/">Social Samosa, Pulse Polio</a></li>
+<li><a href="https://www.storyboard18.com/brand-marketing/bow-wow-how-cheeka-the-pug-made-hutch-a-household-name-42291.htm">Storyboard18, Hutch pug</a> · <a href="https://en.wikipedia.org/wiki/Cheeka_(dog)">Wikipedia, Cheeka</a></li>
+<li><a href="https://www.storyboard18.com/brand-makers/former-ogilvys-ncd-rajiv-rao-recalls-his-first-iconic-ad-campaign-with-piyush-pandey-14993.htm">Storyboard18, Rajiv Rao on Cowboy</a></li>
+<li><a href="https://www.storyboard18.com/advertising/remember-the-times-when-zoozoos-were-all-the-rage-63977.htm">Storyboard18, ZooZoos</a> · <a href="https://brandequity.economictimes.indiatimes.com/news/research/advertising/when-eggheads-turned-into-zoozoo-for-vodafone/93670908">ETBrandEquity, ZooZoos</a> · <a href="https://en.wikipedia.org/wiki/ZooZoo">Wikipedia, ZooZoo</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Mile_Sur_Mera_Tumhara">Wikipedia, Mile Sur Mera Tumhara</a> · <a href="https://en.wikipedia.org/wiki/Piyush_Pandey">Wikipedia, Piyush Pandey</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Reunion_(advertisement)">Wikipedia, Reunion</a> (used only to exclude it)</li>
+<li><a href="https://www.socialsamosa.com/experts-speak/piyush-pandey-mentees-share-lessons-fearlessness-storytelling-6951807">Social Samosa, mentees on Pandey</a> · <a href="https://www.cnbctv18.com/advertising/bharat-puri-pays-tribute-to-piyush-pandey-creative-genius-rooted-in-india-19755708.htm">CNBC-TV18, Bharat Puri</a></li>
+</ul>
+<p class="mut">Pandey's book "Pandeymonium" was not available to read directly. Quotes from it are taken as cited by afaqs and Social Samosa.</p>
+</main></body></html>
